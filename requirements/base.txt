@@ -36,3 +36,10 @@ django-avatar==2.0
 pytz==2014.10
 
 # Your custom requirements go here
+django-suit==0.2.11
+django-imagekit==3.2.4
+django-cors-headers==0.12
+djangorestframework==3.0.4
+django-rest-swagger==0.1.14
+django-rest-auth==0.3.3
+django-taggit==0.12.2

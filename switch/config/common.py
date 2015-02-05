@@ -34,6 +34,7 @@ class Common(Configuration):
         # 'django.contrib.humanize',
 
         # Admin
+        'suit',
         'django.contrib.admin',
     )
     THIRD_PARTY_APPS = (
@@ -42,6 +43,13 @@ class Common(Configuration):
         'allauth',  # registration
         'allauth.account',  # registration
         'allauth.socialaccount',  # registration
+        'imagekit', #image processing library
+        'rest_framework', #rest_framework
+        'rest_framework.authtoken',
+        'rest_framework_swagger',
+        'corsheaders', #impliments CORS
+        'rest_auth',
+        'taggit',
     )
 
     # Apps specific for this project go here.
@@ -269,3 +277,72 @@ class Common(Configuration):
         cls.DATABASES['default']['ATOMIC_REQUESTS'] = True
 
     # Your common stuff: Below this line define 3rd party library settings
+
+    REST_FRAMEWORK = {
+        'DEFAULT_PERMISSION_CLASSES':(
+            'rest_framework.permissions.IsAuthenticated',
+        ),
+        'DEFAULT_AUTHENTICATION_CLASSES': (
+            'rest_framework.authentication.TokenAuthentication',
+            'rest_framework.authentication.SessionAuthentication'
+        ),
+        'PAGINATE_BY':10,
+        'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+         'rest_framework.parsers.MultiPartParser',
+        ),
+
+    }
+
+    CORS_ORIGIN_ALLOW_ALL = True
+
+    CORS_ALLOW_METHODS = (
+            'GET',
+            'POST',
+            'PUT',
+            'PATCH',
+            'DELETE',
+            'OPTIONS'
+        )
+
+    CORS_ALLOW_HEADERS = (
+            'x-requested-with',
+            'content-type',
+            'accept',
+            'origin',
+            'authorization',
+            'x-csrftoken'
+        )
+
+    SUIT_CONFIG = {
+        # header
+        'ADMIN_NAME': 'Switch',
+
+        # forms
+        'SHOW_REQUIRED_ASTERISK': True,  # Default True
+        'CONFIRM_UNSAVED_CHANGES': True, # Default True
+
+        # menu
+        # 'MENU_ICONS': {
+        #    'sites': 'icon-leaf',
+        #    'auth': 'icon-lock',
+        # },
+        'MENU_OPEN_FIRST_CHILD': True, # Default True
+        'MENU': (
+            # {'app': 'api', 'label': 'Access Accra CMS', 'icon':'icon-th'},
+            # Custom app, no models (child links)
+
+
+        ),
+
+        # misc
+        'LIST_PER_PAGE': 15,
+
+        'SEARCH_URL': '',
+    }
+
+    ACCOUNT_ADAPTER = 'users.adapters.MessageFreeAdapter'
+
+    DEFAULT_FOREIGNKEY = 2
+
