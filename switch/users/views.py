@@ -81,8 +81,8 @@ class UserViewSet(viewsets.ModelViewSet):
         # print file_obj
         if serializer.is_valid():
             api_user.age = serializer.data['age']
-            api_user.bio = serializer.data['bio'],
-            api_user.gender = serializer.data['gender'],
+            api_user.bio = serializer.data['bio']
+            api_user.gender = serializer.data['gender']
             print serializer.data['gender']
             # # api_user.profile_image = file_obj
             api_user.save()
@@ -112,6 +112,13 @@ class UserViewSet(viewsets.ModelViewSet):
         else:
             return Response(serializer._errors, status=status.HTTP_400_BAD_REQUEST)
 
+    # def post_save(self, user, *args, **kwargs):
+    #     if type(user.interest) is list:
+    #         saved_interest = models.User.objects.get(pk=user.pk)
+    #         for tag in user.interest:
+    #             saved_interest.interest.add(tag)
+
+
 
 
 class QuestionViewSet(viewsets.ModelViewSet):
@@ -125,3 +132,8 @@ class AnswerViewSet(viewsets.ModelViewSet):
     queryset = models.Answer.objects.all()
     model = models.Answer
 
+
+class GirlViewSet(viewsets.ModelViewSet):
+    serializer_class = serializers.UserSerializer
+    queryset = models.User.objects.filter(gender="F")
+    model = models.User

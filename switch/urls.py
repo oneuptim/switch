@@ -16,6 +16,7 @@ router = DefaultRouter()
 router.register(r'users', views.UserViewSet)
 router.register(r'questions', views.QuestionViewSet)
 router.register(r'answers', views.AnswerViewSet)
+router.register(r'girls', views.GirlViewSet)
 
 urlpatterns = patterns('',
     url(r'^$',  # noqa

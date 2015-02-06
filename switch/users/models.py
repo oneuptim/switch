@@ -40,7 +40,9 @@ class User(AbstractUser):
         blank=True,
     )
     bio = models.TextField()
-    interest = TaggableManager()
+    interest = TaggableManager(
+        blank=True,
+    )
 
     def __unicode__(self):
         return self.username
@@ -48,6 +50,9 @@ class User(AbstractUser):
     @property
     def get_image_url(self):
         return self.prole_image.url
+
+    def get_tags_display(self):
+        return self.tags.values_list('name', flat=True)
 
 
 class QuestionsAndAnswers(models.Model):
