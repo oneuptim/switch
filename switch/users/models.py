@@ -57,7 +57,7 @@ class User(AbstractUser):
 
 class QuestionsAndAnswers(models.Model):
 
-    answer = models.CharField(
+    text = models.CharField(
         max_length=140,
     )
 
